@@ -1,0 +1,48 @@
+Electricity Bill Calculator Using Function
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Electricity Bill Calculator</h2>
+
+<form method="post">
+    Customer Name:
+    <input type="text" name="name" required><br><br>
+
+    Units Consumed:
+    <input type="number" name="units" required><br><br>
+
+    <input type="submit" value="Calculate Bill">
+</form>
+
+<?php
+function calculateBill($units)
+{
+    if ($units <= 100)
+        return $units * 1.50;
+
+    elseif ($units <= 200)
+        return (100 * 1.50) + (($units - 100) * 2.50);
+
+    else
+        return (100 * 1.50) + (100 * 2.50) +
+               (($units - 200) * 4.00);
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $name = $_POST["name"];
+    $units = $_POST["units"];
+
+    $bill = calculateBill($units);
+
+    echo "<h3>Bill Details</h3>";
+    echo "Customer Name: $name<br>";
+    echo "Units Consumed: $units<br>";
+    echo "Electricity Bill: ₹" .
+         number_format($bill, 2);
+}
+?>
+
+</body>
+</html>
