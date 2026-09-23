@@ -1,0 +1,33 @@
+6.Palindrome Checker
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Palindrome Checker</h2>
+
+<form method="post">
+    Enter Word:
+    <input type="text" name="text" required><br><br>
+
+    <input type="submit" value="Check">
+</form>
+
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $text = $_POST["text"];
+    $reverse = strrev($text);
+
+    echo "<h3>Result</h3>";
+    echo "Given Text: $text<br>";
+    echo "Reversed Text: $reverse<br>";
+
+    if (strtolower($text) == strtolower($reverse))
+        echo "<b>$text is a Palindrome</b>";
+    else
+        echo "<b>$text is not a Palindrome</b>";
+}
+?>
+
+</body>
+</html>
